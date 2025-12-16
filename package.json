@@ -1,15 +1,21 @@
 {
   "name": "ledger-dmk",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Ledger Device Management Kit Tutorial",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@ledgerhq/device-management-kit": "^0.13.0"
+    "@ledgerhq/device-management-kit": "^0.13.0",
+    "@ledgerhq/device-transport-kit-web-hid": "^1.2.2"
+  },
+  "devDependencies": {
+    "vite": "^5.4.0"
   }
 }
