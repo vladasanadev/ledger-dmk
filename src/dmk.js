@@ -14,6 +14,6 @@ import { webHidTransportFactory } from "@ledgerhq/device-transport-kit-web-hid";
 // Important: The DMK should be initialized only once (singleton pattern)
 export const dmk = new DeviceManagementKitBuilder()
   .addLogger(new ConsoleLogger())
-  .addTransport(webHidTransportFactory) // Transport is required!
+  .addTransport(webHidTransportFactory) // Transport is required
   .build();
 

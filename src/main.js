@@ -72,7 +72,8 @@ async function startDiscovery() {
 
   try {
     // Start discovering devices - this returns an Observable
-    discoverySubscription = dmk.startDiscovering().subscribe({
+    // Pass empty object {} as required by the API
+    discoverySubscription = dmk.startDiscovering({}).subscribe({
       next: async (device) => {
         console.log("[DMK] device_discovered:", device);
         setStatus(STATUS_MESSAGES.found, "searching");
@@ -82,7 +83,8 @@ async function startDiscovery() {
 
         try {
           // Connect to the discovered device
-          const sessionId = await dmk.connect({ deviceId: device.id });
+          // API expects { device } not { deviceId }
+          const sessionId = await dmk.connect({ device });
           currentSessionId = sessionId;
 
           console.log("[DMK] session_established:", sessionId);
@@ -164,4 +166,3 @@ disconnectBtn.addEventListener("click", disconnect);
 // Log that the app is ready
 console.log("%c[LEDGER_DMK] system_initialized", "color: #ff00ff; font-weight: bold");
 console.log("%c[LEDGER_DMK] awaiting_user_input...", "color: #00ffff");
-

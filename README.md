@@ -14,17 +14,20 @@ This is a **beginner-friendly starter** that shows how to:
 
 ## 🖼️ UI Preview
 
-The app features a modern dark UI with:
-- Gradient background (dark navy/purple tones)
-- Orange accent buttons with hover effects
-- Real-time status updates with loading animations
-- Device info panel showing model and session ID
+The app features a **cyberpunk neon aesthetic** with:
+- Dark background with animated grid perspective effect
+- Neon pink (`#ff00ff`) and cyan (`#00ffff`) color scheme
+- Glowing text effects with flickering animations
+- Floating particle effects
+- Scanline overlay for retro CRT feel
+- Orbitron + JetBrains Mono typography
+- Terminal-style status messages
 
 ## 📁 Project Structure
 
 ```
 ledger-dmk/
-├── index.html          # UI with Connect/Disconnect buttons
+├── index.html          # UI with neon cyberpunk styling
 ├── src/
 │   ├── dmk.js          # DMK singleton instance
 │   └── main.js         # Discovery & connection logic
@@ -56,7 +59,7 @@ npm run dev
 1. Open **http://localhost:3000** in Chrome or Edge
 2. **Plug in** your Ledger device via USB
 3. **Unlock** your device (enter PIN)
-4. Click **"Connect Ledger"** button
+4. Click **"[ CONNECT ]"** button
 5. **Select** your device in the browser popup
 6. ✅ You're connected!
 
@@ -84,7 +87,8 @@ export const dmk = new DeviceManagementKitBuilder()
 
 ```javascript
 // Start discovering - returns an RxJS Observable
-const subscription = dmk.startDiscovering().subscribe({
+// Note: Pass empty object {} to startDiscovering
+const subscription = dmk.startDiscovering({}).subscribe({
   next: (device) => {
     console.log("Found device:", device);
     // Connect to discovered device
@@ -102,7 +106,8 @@ subscription.unsubscribe();
 
 ```javascript
 // Connect returns a session ID
-const sessionId = await dmk.connect({ deviceId: device.id });
+// Note: Pass the whole device object, not just the ID
+const sessionId = await dmk.connect({ device });
 
 // Get connected device info
 const connectedDevice = dmk.getConnectedDevice({ sessionId });
@@ -121,9 +126,9 @@ Currently, after connecting, the app:
 
 | Action | Result |
 |--------|--------|
-| Shows status | "Connected successfully!" (green) |
+| Shows status | "connection_established // access_granted" (cyan glow) |
 | Displays info | Device model + Session ID |
-| Enables disconnect | "Disconnect" button appears |
+| Enables disconnect | "[ DISCONNECT ]" button appears |
 
 ### Next Steps You Can Add:
 
@@ -176,4 +181,3 @@ console.log("OS Version:", result);
 ## 📝 License
 
 ISC
-
